@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Header() {
   return (
     <header className="flex flex-col lg:flex-row justify-between lg:mb-20">
@@ -10,9 +12,9 @@ export default function Header() {
           Laravel Developer <br /> Tech Enthusiast & <br /> Lifelong Learner
         </h1>
         <p className="font-normal text-gray-500 text-sm md:text-md xl:text-lg mb-10">
-          Hi, I'm Mark Cornelio. I'm a Laravel Developer with a decade long of experience.
+          Hi, I&apos;m Mark Cornelio. I&apos;m a Laravel Developer with a decade long of experience.
           <br/> If you are looking for a developer to build robust applciations
-          <br/> and explore new technologies, let's connect and create
+          <br/> and explore new technologies, let&apos;s connect and create
           <br/> something amazing together.
         </p>
         <div className="space-y-5 lg:space-x-5 mb-10">
@@ -33,7 +35,7 @@ export default function Header() {
         <span className="font-normal text-gray-500 text-sm"></span>
       </div>
       <div className="mx-auto lg:mx-0">
-        <img width={400} src="/profile-picture.jpg" alt="Image" />
+        <Image src={'/profile-picture.jpg'} alt={'Mark Cornelio'} width={400} height={100}/>
       </div>
     </header>
   );
