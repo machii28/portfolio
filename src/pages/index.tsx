@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Services from "@/components/Services";
 import Clients from "@/components/Clients";
 import Footer from "@/components/Footer";
+import Languages from "@/components/Languages";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
     >
       <Navbar />
       <Header />
+      <Languages />
       <Services />
       <Clients />
       <Footer />
