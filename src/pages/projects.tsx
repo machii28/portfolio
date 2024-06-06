@@ -72,7 +72,7 @@ export default function Projects() {
 
         <div className="flex flex-col lg:flex-row justify-between my-16">
           <div className="mx-auto lg:mx-0 p-10 lg:mb-0 mb-5 shadow lg:w-1/2">
-            <Image src={'/projects/Lingochingoo.png'} alt={'Shopify Client'} width={700} height={0} />
+            <Image src={'/projects/LingoChingoo.png'} alt={'Shopify Client'} width={700} height={0} />
           </div>
           <div className="text-center lg:text-left lg:mb-0 px-10 lg:w-1/2">
             <h1 className="font-bold text-gray-800 text-2xl md:text-3xl xl:text-4xl block">
