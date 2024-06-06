@@ -17,7 +17,7 @@ export default function Navbar() {
       <ul className="lg:flex flex-col lg:flex-row lg:items-center lg:space-x-20 mb-10 xl:mb-0">
         <li
           className="font-medium text-cyan-500 text-lg hover:text-cyan-200 transition ease-in-out duration-300 mb-5 lg:mb-0">
-          <a href="/projects">Projects</a>
+          <Link href="/projects">Projects</Link>
         </li>
         {/*<li*/}
         {/*  className="font-medium text-cyan-500 text-lg hover:text-cyan-200 transition ease-in-out duration-300 mb-5 lg:mb-0">*/}
