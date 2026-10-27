@@ -1,129 +1,76 @@
+import Head from "next/head";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Image from "next/image";
-import Link from "next/link";
+import { projects, ProjectFigure } from "@/components/projects-data";
 
 export default function Projects() {
   return (
-    <main className="w-full mx-auto max-w-screen-2xl py-6 px-16">
-      <Navbar/>
-
-      <section className="lg:my-20">
-
-        <div className="flex flex-col lg:flex-row justify-between my-16">
-          <div className="mx-auto lg:mx-0 p-10 lg:mb-0 mb-5 shadow lg:w-1/2">
-            <Image src={'/projects/SurveyGizmo.png'} alt={'SurveyGizmo'} width={700} height={0}/>
-          </div>
-          <div className="text-center lg:text-left mb-20 lg:mb-0 px-10 lg:w-1/2">
-            <h1 className="font-bold text-cyan-600 text-2xl md:text-3xl xl:text-4xl block">
-              Laravel Survey Gizmo
+    <>
+      <Head>
+        <title>Projects — Mark Cornelio</title>
+        <meta
+          name="description"
+          content="Selected work by Mark Cornelio: PHP Composer packages, mobile apps, e-commerce builds, and an Arduino-controlled Unity game."
+        />
+      </Head>
+      <Navbar />
+      <main>
+        <div className="mx-auto w-full max-w-6xl px-6 md:px-10">
+          <header className="border-b border-line pb-14 pt-10 md:pb-20">
+            <h1 className="max-w-3xl font-sans text-4xl font-extrabold leading-tight tracking-tight text-ink md:text-6xl">
+              Selected work from ten years of building.
             </h1>
-            <span className="font-normal inline-block text-cyan-500">PHP Composer Package</span>
-            <p className="font-normal text-gray-500 text-sm md:text-md xl:text-lg mt-5 mb-10">
-              A PHP Library that wraps the API of SurveyGizmo (now named as Alchemer)
+            <p className="mt-6 max-w-measure text-lg leading-relaxed text-steel">
+              Open-source PHP packages, mobile and e-commerce apps, and one
+              Arduino glove that controls a Unity game.
             </p>
-          </div>
+          </header>
+
+          <section className="divide-y divide-line">
+            {projects.map((project) => (
+              <article
+                key={project.slug}
+                className="grid items-center gap-8 py-14 md:grid-cols-12"
+              >
+                <div className="md:col-span-6">
+                  <ProjectFigure project={project} />
+                </div>
+                <div className="md:col-span-6">
+                  <h2 className="font-sans text-2xl font-extrabold tracking-tight text-ink md:text-3xl">
+                    {project.link ? (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="transition-colors duration-200 hover:text-signal"
+                      >
+                        {project.title}
+                      </a>
+                    ) : (
+                      project.title
+                    )}
+                  </h2>
+                  <p className="mt-4 max-w-measure leading-relaxed text-steel">
+                    {project.description}
+                  </p>
+                  {project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-6 inline-block font-sans text-sm font-semibold text-ink underline decoration-signal decoration-2 underline-offset-4 transition-colors duration-200 hover:text-signal"
+                    >
+                      Open live app
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
+          </section>
+
+          <Footer />
         </div>
-
-        <div className="flex flex-col lg:flex-row justify-between my-16">
-          <div className="mx-auto lg:mx-0 p-10 lg:mb-0 mb-5 shadow lg:w-1/2">
-            <Image src={'/projects/Shopify-client.png'} alt={'Shopify Client'} width={700} height={0}/>
-          </div>
-          <div className="text-center lg:text-left lg:mb-0 px-10 lg:w-1/2">
-            <h1 className="font-bold text-cyan-600 text-2xl md:text-3xl xl:text-4xl block">
-              Shopify Client
-            </h1>
-            <span className="font-normal inline-block text-cyan-500">PHP Composer Package</span>
-            <p className="font-normal text-gray-500 text-sm md:text-md xl:text-lg mt-5 mb-10">
-              A PHP Library that provides a fluent implementation of Shopify API.
-              It&apos;s built on top osiset/Basic-Shopify-API.
-            </p>
-          </div>
-        </div>
-
-        <div className="flex flex-col lg:flex-row justify-between my-16">
-          <div className="mx-auto lg:mx-0 p-10 lg:mb-0 mb-5 shadow lg:w-1/2">
-            <Link href={'https://pokedex-8hzq-git-main-mark-cornelios-projects-bd6166d2.vercel.app'}>
-              <Image src={'/projects/Pokedex.png'} alt={'Shopify Client'} width={700} height={0}/>
-            </Link>
-          </div>
-          <div className="text-center lg:text-left lg:mb-0 px-10 lg:w-1/2">
-            <Link href='https://pokedex-8hzq-git-main-mark-cornelios-projects-bd6166d2.vercel.app/#'
-                  className="font-bold text-cyan-600 text-2xl md:text-3xl xl:text-4xl block">
-              Pokemon App
-            </Link>
-            <span className="font-normal inline-block text-cyan-500">Mobile App</span>
-            <p className="font-normal text-gray-500 text-sm md:text-md xl:text-lg mt-5 mb-10">
-              A Pokemon app that is built using React/Next JS. It&apos;s still an ongoing project with
-              the vision of implementing a Python backend with an integration of LLM. For building a
-              pokemon competitive team
-            </p>
-          </div>
-        </div>
-
-        <div className="flex flex-col lg:flex-row justify-between my-16">
-          <div className="mx-auto lg:mx-0 p-10 lg:mb-0 mb-5 shadow lg:w-1/2">
-            <Image src={'/projects/Cyclista.png'} alt={'Shopify Client'} width={700} height={0}/>
-          </div>
-          <div className="text-center lg:text-left lg:mb-0 px-10 lg:w-1/2">
-            <h1 className="font-bold text-cyan-600 text-2xl md:text-3xl xl:text-4xl block">
-              Cyclista
-            </h1>
-            <span className="font-normal inline-block text-cyan-500">Mobile App</span>
-            <p className="font-normal text-gray-500 text-sm md:text-md xl:text-lg mt-5 mb-10">
-              A Bike app that&apos;s built using Vue and Lumen. With an integration of the leaflet JS
-            </p>
-          </div>
-        </div>
-
-        <div className="flex flex-col lg:flex-row justify-between my-16 sm:my-0">
-          <div className="mx-auto lg:mx-0 p-10 lg:mb-0 mb-5 shadow lg:w-1/2">
-            <Image src={'/projects/Daparoo.png'} alt={'Shopify Client'} width={700} height={0}/>
-          </div>
-          <div className="text-center lg:text-left lg:mb-0 px-10 lg:w-1/2">
-            <h1 className="font-bold text-cyan-600 text-2xl md:text-3xl xl:text-4xl block">
-              Daparoo
-            </h1>
-            <span className="font-normal inline-block text-cyan-500">Ecommerce Web App</span>
-            <p className="font-normal text-gray-500 text-sm md:text-md xl:text-lg mt-5 mb-10">
-              An ecommerce website that is built using Laravel and Vue JS.
-            </p>
-          </div>
-        </div>
-
-        <div className="flex flex-col lg:flex-row justify-between my-16">
-          <div className="mx-auto lg:mx-0 p-10 lg:mb-0 mb-5 shadow lg:w-1/2">
-            <Image src={'/projects/LingoChingoo.png'} alt={'Shopify Client'} width={700} height={0}/>
-          </div>
-          <div className="text-center lg:text-left lg:mb-0 px-10 lg:w-1/2">
-            <h1 className="font-bold text-cyan-600 text-2xl md:text-3xl xl:text-4xl block">
-              LingoChingoo
-            </h1>
-            <span className="font-normal inline-block text-cyan-500">Social Networking App</span>
-            <p className="font-normal text-gray-500 text-sm md:text-md xl:text-lg mt-5 mb-10">
-              A Social Networking Web App that is built using Laravel and Vue JS
-            </p>
-          </div>
-        </div>
-
-        <div className="flex flex-col lg:flex-row justify-between my-16">
-          <div className="mx-auto lg:mx-0 p-10 lg:mb-0 mb-5 shadow lg:w-1/2">
-            <Image src={'/projects/TAC.png'} alt={'Shopify Client'} width={700} height={0}/>
-          </div>
-          <div className="text-center lg:text-left lg:mb-0 px-10 lg:w-1/2">
-            <h1 className="font-bold text-cyan-600 text-2xl md:text-3xl xl:text-4xl block">
-              Thera Game with Arduino Glove Controller
-            </h1>
-            <span className="font-normal inline-block text-cyan-500">Unity Game and Arduino Device</span>
-            <p className="font-normal text-gray-500 text-sm md:text-md xl:text-lg mt-5 mb-10">
-              A Glove controller that enables the user to control a unity game.
-            </p>
-          </div>
-        </div>
-
-      </section>
-
-      <Footer/>
-    </main>
+      </main>
+    </>
   );
 }

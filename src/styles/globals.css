@@ -2,26 +2,110 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+  body {
+    @apply bg-paper font-serif text-ink antialiased;
+    background-image:
+      linear-gradient(to right, rgb(31 42 55 / 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(31 42 55 / 0.04) 1px, transparent 1px);
+    background-size: 2rem 2rem;
+  }
+
+  ::selection {
+    background: #ff4d00;
+    color: #f7f7f4;
+  }
+
+  :focus-visible {
+    outline: 2px solid #ff4d00;
+    outline-offset: 3px;
   }
 }
 
-body {
+@layer components {
+  /* Technical figure frame: hairline border with an orange registration
+     square in the top-left corner. */
+  .fig-frame {
+    @apply relative border border-line bg-panel;
+  }
 
-}
+  .fig-frame::before {
+    content: "";
+    @apply absolute -top-1.5 -left-1.5 block h-3 w-3 bg-signal;
+  }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .fig-caption {
+    @apply mt-3 font-serif text-sm italic text-steel;
+  }
+
+  .hairline-t {
+    @apply border-t border-line;
+  }
+
+  /* One orchestrated reveal for the hero. Nothing else animates on scroll. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .reveal-1 { animation-delay: 0.05s; }
+  .reveal-2 { animation-delay: 0.15s; }
+  .reveal-3 { animation-delay: 0.25s; }
+  .reveal-4 { animation-delay: 0.35s; }
+  .reveal-5 { animation-delay: 0.45s; }
+
+  @keyframes rise {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .reveal {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+
+    .ticker-track {
+      animation: none;
+    }
+  }
+
+  /* Slow editorial ticker. Two identical rows translate -50% for a
+     seamless loop. */
+  .ticker {
+    display: flex;
+    width: max-content;
+  }
+
+  .ticker-track {
+    display: flex;
+    align-items: center;
+    animation: ticker-scroll 55s linear infinite;
+  }
+
+  .ticker-item {
+    @apply flex items-center font-sans text-sm font-semibold whitespace-nowrap text-ink;
+  }
+
+  .ticker-dot {
+    @apply mx-8 block h-1.5 w-1.5 bg-signal;
+  }
+
+  @keyframes ticker-scroll {
+    to {
+      transform: translateX(-50%);
+    }
   }
 }
